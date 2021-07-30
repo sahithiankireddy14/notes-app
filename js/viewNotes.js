@@ -92,6 +92,11 @@ function saveEditedNote(){
   const editNoteModal = document.querySelector('#editNoteModal');
   editNoteModal.classList.toggle('is-active');
 };
+
+ const archive = (noteId) => {
+     
+  
+};
   
 
 
@@ -115,8 +120,16 @@ const createCard = (note, noteItem) => {
              <div class="content">${note.text}</div>
              <button class="button" id="${noteItem}" onclick="deleteNote(this.id)"> Delete </button>
               <a id="${noteItem}" class="card-footer-item" onclick="editNote('${noteItem}')">
+              
   Edit
  </a>
+
+ <a id="${noteItem}" class="card-footer-item" onclick="archive('${noteItem}')">
+              
+  Archive
+ </a>
+
+ 
 
            
            
