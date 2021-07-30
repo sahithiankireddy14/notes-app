@@ -52,7 +52,27 @@ function deleteNote(noteItem)
     document.querySelector('#warning').style.display = "none"
   }
 }
-
+function likeNote(noteItem){
+  console.log(`users/${userglobal}/${noteItem}`);
+  // count++;
+  // if (count < 2){
+  //    document.querySelector('#warning').style.display = "block"
+  // }
+  // else{
+  //   firebase.database().ref(`users/${userglobal}/${noteItem}`).remove();
+  //   count = 0;
+  //   document.querySelector('#warning').style.display = "none"
+  // }
+  [...document.getElementsByClassName("like")]
+        .forEach(function (card) {
+          card.addEventListener("click", cardClicked);
+          function cardClicked() {
+            firebase.database().ref(`users/${userglobal}/${noteItem}`+`likes/`).push({
+              user:userglobal
+            });
+          }
+        });
+}
 var whatEditNote
 const editNote = (noteId) => {
   const editNoteModal = document.querySelector('#editNoteModal');
@@ -119,6 +139,7 @@ const createCard = (note, noteItem) => {
            <div class="card-content">
              <div class="content">${note.text}</div>
              <button class="button" id="${noteItem}" onclick="deleteNote(this.id)"> Delete </button>
+             <button class="button like" id="${noteItem}" onclick="likeNote(this.id)"> Like </button>
               <a id="${noteItem}" class="card-footer-item" onclick="editNote('${noteItem}')">
               
   Edit
